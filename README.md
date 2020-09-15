@@ -1,24 +1,26 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### Notes
+To create a user
 
-Things you may want to cover:
+curl -d "email=connor@gmail.com" -d "password=password" http://localhost:3000/users/sign_up
 
-* Ruby version
+### Date
 
-* System dependencies
+### Location of deployed application
 
-* Configuration
+### Time spent
 
-* Database creation
+### Assumptions made
 
-* Database initialization
+### Shortcuts/Compromises made
 
-* How to run the test suite
+### Stretch goals attempted
 
-* Services (job queues, cache servers, search engines, etc.)
+### Instructions to run assignment locally
 
-* Deployment instructions
+### What did you not include in your solution that you want us to know about?
 
-* ...
+### Other information about your submission that you feel it's important that we know if applicable.
+
+### Your feedback on this technical challenge
