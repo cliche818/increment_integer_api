@@ -24,11 +24,18 @@ RSpec.describe RegistrationsController do
       expect(json['data']['attributes']['email']).to eq(user.email)
     end
 
-    it 'should not create a user with an existing user' do
+    it 'should not create a user with an existing user and return an error message' do
       create(:user, email: 'abc@gmail.com')
       post :create, params: { email: 'abc@gmail.com', password: '123456'}
 
       expect(User.count).to eq(1)
+
+      json = JSON.parse(response.body)
+
+      expect(response.status).to eq(403)
+      expect(json['errors']['status']).to eq('403')
+      expect(json['errors']['title']).to eq('Failed to create user')
+      expect(json['errors']['detail']).to eq('User already exists')
     end
   end
 end
