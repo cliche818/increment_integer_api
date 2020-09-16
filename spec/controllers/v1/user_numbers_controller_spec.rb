@@ -13,6 +13,18 @@ module V1
         expect(json['data']['type']).to eq('user')
         expect(json['data']['attributes']['number']).to eq(user.number)
       end
+
+      it 'should return an error message if the user api token is invalid' do
+        request.headers.merge!({ 'Authorization' => 'Bearer fake_token'})
+        get :current
+
+        json = JSON.parse(response.body)
+
+        expect(response.status).to eq(404)
+        expect(json['errors']['status']).to eq('404')
+        expect(json['errors']['title']).to eq('Invalid api token')
+        expect(json['errors']['detail']).to eq('Invalid api token')
+      end
     end
   end
 end
