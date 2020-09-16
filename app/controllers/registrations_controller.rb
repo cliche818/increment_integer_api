@@ -3,7 +3,8 @@ class RegistrationsController < ApplicationController
     existing_user = User.find_by(email: params[:email])
 
     unless existing_user
-      User.create!(user_params)
+      user = User.create!(user_params)
+      render json: UserSerializer.new(user).serializable_hash and return
     end
   end
 

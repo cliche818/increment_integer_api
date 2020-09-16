@@ -11,6 +11,19 @@ RSpec.describe RegistrationsController do
       expect(user.api_token).to_not be_nil
     end
 
+    it 'should return the json with the user \'s api token' do
+      post :create, params: { email: 'abc@gmail.com', password: '123456'}
+
+      json = JSON.parse(response.body)
+
+      user = User.first
+
+      expect(json['data']['id']).to eq(user.id.to_s)
+      expect(json['data']['type']).to eq('user')
+      expect(json['data']['attributes']['api_token']).to eq(user.api_token)
+      expect(json['data']['attributes']['email']).to eq(user.email)
+    end
+
     it 'should not create a user with an existing user' do
       create(:user, email: 'abc@gmail.com')
       post :create, params: { email: 'abc@gmail.com', password: '123456'}
