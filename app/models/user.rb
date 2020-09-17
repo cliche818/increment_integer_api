@@ -8,4 +8,15 @@ class User < ApplicationRecord
     self.number = self.number + 1
     save
   end
+
+  def reset_number(number)
+    if User.valid_number?(number)
+      self.number = number
+      save
+    end
+  end
+
+  def self.valid_number?(number)
+    number >= 0
+  end
 end

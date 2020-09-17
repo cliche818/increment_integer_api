@@ -6,5 +6,6 @@ Rails.application.routes.draw do
   namespace :v1 do
     get '/current', to: 'user_numbers#current'
     get '/next', to: 'user_numbers#next'
+    put '/reset', to: 'user_numbers#reset'
   end
 end

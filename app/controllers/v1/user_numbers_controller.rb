@@ -13,6 +13,20 @@ module V1
       render json: NumberSerializer.new(@current_user).serializable_hash
     end
 
+    def reset
+      if params[:number].nil? || !params[:number].match(/^[1-9][0-9]+/) || !User.valid_number?(params[:number].to_i)
+        render json: {
+            errors: {
+                status: '400',
+                title: 'Invalid number',
+                detail: 'Need to be a number from 0 and above'
+            }
+        }, status: 400 and return
+      end
+      @current_user.update(number: params[:number])
+      render json: NumberSerializer.new(@current_user).serializable_hash
+    end
+
     private
 
     def authenticate

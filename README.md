@@ -9,6 +9,13 @@ example response: {"data":{"id":"3","type":"user","attributes":{"api_token":"NDD
 curl http://localhost:3000/v1/current -H "Authorization: Bearer [user_api_token]"
 example response: {"data":{"id":"2","type":"user","attributes":{"number":0}}}
 
+curl http://localhost:3000/v1/next -H "Authorization: Bearer [user_api_token]"
+example response: {"data":{"id":"2","type":"user","attributes":{"number":1}}}
+
+curl -X "PUT" http://localhost:3000/v1/reset --data "number=100" -H "Authorization: Bearer [user_api_token]"
+example response: {"data":{"id":"2","type":"user","attributes":{"number":100}}}
+or if number is invalid {"errors":{"status":"400","title":"Invalid number","detail":"Need to be a number from 0 and above"}}
+
 ### Date
 
 ### Location of deployed application
