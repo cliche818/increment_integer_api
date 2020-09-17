@@ -55,15 +55,20 @@ frontend ~8 hours
 I didn't put a upper bound on the number, assuming the user will not reset the number to a really high number.
 
 ### Shortcuts/Compromises made
-There are libraries I should use for user authentication (Devise), but since I have no used that library before, I opted for a simpler approach (following a tutorial)
+-There are libraries I should use for user authentication (Devise), but since I have no used that library before,
+I opted for a simpler approach (following a tutorial)
+-Number should probably be it's own table if there are more info associated to it, but to keep things simple,
+I put the number on the user (easier to generate a default value when a user is created)
 
 ### Stretch goals attempted
-Deploying to a live environment for both backend and frontend
+-Deploying to a live environment for both backend and frontend
+-Created a frontend app to use the API
 
 ### Instructions to run assignment locally
 backend: requires ruby 2.7.1
 bundle install
 rake db:setup
+rails s (see localhost:3000)
 
 frontend
 yarn install
@@ -71,7 +76,8 @@ PORT=3300 yarn start
 go to localhost:3300 (connects to the production backend server, I couldn't figure how to connect locally)
 
 ### What did you not include in your solution that you want us to know about?
-I didn't have time to add unit tests for the frontend.  If wanted to take a step further, then browser testing on the frontend (using a library like Cypress)
+I didn't have time to add unit tests for the frontend, spent alot of time prototyping approaches.
+To take a step further, I could add browser testing on the frontend (using a library like Cypress)
 
 ### Other information about your submission that you feel it's important that we know if applicable.
 -there's unit tests for the backend portion of the code challenge
