@@ -8,6 +8,11 @@ module V1
       render json: NumberSerializer.new(@current_user).serializable_hash
     end
 
+    def next
+      @current_user.increment_number
+      render json: NumberSerializer.new(@current_user).serializable_hash
+    end
+
     private
 
     def authenticate
