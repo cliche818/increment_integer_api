@@ -44,3 +44,7 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'jsonapi-serializer', '~> 2.1.0'
+
+group :production do
+  gem 'pg', '~> 1.2.3'
+end
