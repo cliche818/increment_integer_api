@@ -57,7 +57,21 @@ module V1
     end
 
     describe '#reset' do
-      it 'should reset the number for the associated token user and return it' do
+      it 'should reset the number 1 for the associated token user and return it' do
+        user = create(:user)
+        request.headers.merge!({ 'Authorization' => "Bearer #{user.api_token}" })
+        put :reset, params: {number: 1}
+
+        json = JSON.parse(response.body)
+        expect(json['data']['id']).to eq(user.id.to_s)
+        expect(json['data']['type']).to eq('user')
+        expect(json['data']['attributes']['number']).to eq(1)
+
+        user.reload
+        expect(user.number).to eq(1)
+      end
+
+      it 'should reset the number 1001 for the associated token user and return it' do
         user = create(:user)
         request.headers.merge!({ 'Authorization' => "Bearer #{user.api_token}" })
         put :reset, params: {number: 1001}

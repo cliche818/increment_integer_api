@@ -14,7 +14,7 @@ module V1
     end
 
     def reset
-      if params[:number].nil? || !params[:number].match(/^[1-9][0-9]+/) || !User.valid_number?(params[:number].to_i)
+      if params[:number].nil? || !params[:number].match(/^[0-9]+/) || !User.valid_number?(params[:number].to_i)
         render json: {
             errors: {
                 status: '400',
