@@ -38,4 +38,31 @@ RSpec.describe RegistrationsController do
       expect(json['errors']['detail']).to eq('User already exists')
     end
   end
+
+  describe '#sign_in' do
+    it 'should return the user\'s api token if the email and password is correct' do
+      user = create(:user, email: 'abc@gmail.com', password: '123456')
+      post :sign_in, params: { email: 'abc@gmail.com', password: '123456'}
+
+      json = JSON.parse(response.body)
+
+      expect(response.status).to eq(200)
+      expect(json['data']['id']).to eq(user.id.to_s)
+      expect(json['data']['type']).to eq('user')
+      expect(json['data']['attributes']['api_token']).to eq(user.api_token)
+      expect(json['data']['attributes']['email']).to eq(user.email)
+    end
+
+    it 'should return an error message if the email and password is not correct' do
+      create(:user, email: 'abc@gmail.com', password: '123456')
+      post :sign_in, params: { email: 'abc@gmail.com', password: 'not_correct'}
+
+      json = JSON.parse(response.body)
+
+      expect(response.status).to eq(401)
+      expect(json['errors']['status']).to eq('401')
+      expect(json['errors']['title']).to eq('Failed to sign in')
+      expect(json['errors']['detail']).to eq('Incorrect email/password')
+    end
+  end
 end

@@ -6,6 +6,9 @@ To create a user
 curl -d "email=connor1@gmail.com" -d "password=password" http://localhost:3000/users/sign_up
 example response: {"data":{"id":"3","type":"user","attributes":{"api_token":"NDDYqTGcU83dReqZLYKXodaP","email":"connor1@gmail.com"}}}
 
+curl -d "email=connor1@gmail.com" -d "password=password" http://localhost:3000/users/sign_in
+example response: {"data":{"id":"3","type":"user","attributes":{"api_token":"NDDYqTGcU83dReqZLYKXodaP","email":"connor1@gmail.com"}}}
+
 curl http://localhost:3000/v1/current -H "Authorization: Bearer [user_api_token]"
 example response: {"data":{"id":"2","type":"user","attributes":{"number":0}}}
 
