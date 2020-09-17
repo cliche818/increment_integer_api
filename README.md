@@ -52,13 +52,15 @@ backend ~6 hours
 frontend ~8 hours
 
 ### Assumptions made
-I didn't put a upper bound on the number, assuming the user will not reset the number to a really high number.
+I didn't put a upper bound on the number, assuming the user will not reset the number to a really
+high number (2,147,483,647, limit on the sql column).
 
 ### Shortcuts/Compromises made
 -There are libraries I should use for user authentication (Devise), but since I have no used that library before,
 I opted for a simpler approach (following a tutorial)
 -Number should probably be it's own table if there are more info associated to it, but to keep things simple,
 I put the number on the user (easier to generate a default value when a user is created)
+-The fetch calls in Number.js should be extracted out (easier to write unit test to mock these api calls when test rendering the component)
 
 ### Stretch goals attempted
 -Deploying to a live environment for both backend and frontend
