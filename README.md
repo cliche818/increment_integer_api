@@ -87,7 +87,7 @@ I put the number on the user (easier to generate a default value when a user is 
 -Created a frontend app to use the API
 
 ### Instructions to run assignment locally
-####backend
+#### backend
 requires ruby 2.7.1
 
 bundle install
@@ -97,7 +97,7 @@ rake db:setup
 rails s (see localhost:3000)
 
 
-####frontend
+#### frontend
 
 yarn install
 
